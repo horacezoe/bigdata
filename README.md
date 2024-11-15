@@ -1,0 +1,1 @@
+在application.properties进行数据库配置和python服务的url的配置
