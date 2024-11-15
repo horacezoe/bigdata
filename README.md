@@ -1,1 +1,2 @@
 在application.properties进行数据库配置和python服务的url的配置
+用户数据的名字和邮件信息不能重复
