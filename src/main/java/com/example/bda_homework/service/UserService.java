@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.management.relation.Role;
+
 @Service
 public class UserService {
 
@@ -25,12 +27,7 @@ public class UserService {
     }
 
     public void registerUser(UserVO userVO) {
-        User user = new User();
-        user.setUsername(userVO.getUsername());
-        user.setPassword(passwordEncoder.encode(userVO.getPassword()));
-        user.setEmail(userVO.getEmail());
-        user.setRole(userVO.getRole());
-        userRepository.save(user);
+
     }
 
     public void upgradeToVip(String userName) {
@@ -39,4 +36,8 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public String getUserInfo(String userName) {
+        User user = userRepository.findByUsername(userName);
+        return user.getRole();
+    }
 }
