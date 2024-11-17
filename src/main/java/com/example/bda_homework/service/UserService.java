@@ -39,8 +39,4 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public String getUserRole(String username) {
-        User user = userRepository.findByUsername(username);
-        return user != null ? user.getRole() : null;
-    }
 }
