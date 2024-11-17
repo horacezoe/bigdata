@@ -41,8 +41,8 @@ public class UserController {
     }
 
     @PostMapping("/vip")
-    public ResponseEntity<?> upgradeToVip(@RequestParam Long userId) {
-        userService.upgradeToVip(userId);
+    public ResponseEntity<?> upgradeToVip(@RequestParam String userName) {
+        userService.upgradeToVip(userName);
         return ResponseEntity.ok("User upgraded to VIP successfully");
     }
 }

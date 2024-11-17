@@ -33,8 +33,8 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void upgradeToVip(Long userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+    public void upgradeToVip(String userName) {
+        User user = userRepository.findByUsername(userName);
         user.setRole("ROLE_VIP");
         userRepository.save(user);
     }
