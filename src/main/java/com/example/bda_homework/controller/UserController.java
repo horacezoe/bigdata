@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 
+import javax.management.relation.Role;
+
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -41,8 +43,14 @@ public class UserController {
     }
 
     @PostMapping("/vip")
-    public ResponseEntity<?> upgradeToVip(@RequestParam String username) {
-        userService.upgradeToVip(username);
+    public ResponseEntity<?> upgradeToVip(@RequestParam String userName) {
+        userService.upgradeToVip(userName);
         return ResponseEntity.ok("User upgraded to VIP successfully");
+    }
+
+    @GetMapping("/info")
+    public ResponseEntity<?> getUserInfo(@RequestParam String userName) {
+        String role = userService.getUserInfo(userName);
+        return ResponseEntity.ok(role);
     }
 }
