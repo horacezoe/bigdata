@@ -68,5 +68,9 @@ public class Paper {
     public void setYear(int year) {
         this.year = year;
     }
+
+    public void setPaperIdList(String referencedPaperIds) {
+        this.paperIdList = referencedPaperIds;
+    }
 }
 

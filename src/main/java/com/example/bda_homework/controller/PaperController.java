@@ -45,7 +45,7 @@ public class PaperController {
 
     @GetMapping("/reference")
     public ResponseEntity<List<Paper>> getReferencedPapers(@RequestParam Long paperId) {
-        List<Paper> referencedPapers = PaperService.getReferencedPapers(paperId);
+        List<Paper> referencedPapers = paperService.getReferencedPapers(paperId);
         return ResponseEntity.ok(referencedPapers);
     }
 }

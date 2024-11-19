@@ -30,14 +30,14 @@ public class UserService {
         User user = new User();
         user.setUsername(userVO.getUsername());
         user.setEmail(passwordEncoder.encode(userVO.getEmail()));
-        user.setRole("ROLE_USER");
+        user.setRole("COMMON");
         user.setPassword(passwordEncoder.encode(userVO.getPassword()));
         userRepository.save(user);
     }
 
     public void upgradeToVip(String userName) {
         User user = userRepository.findByUsername(userName);
-        user.setRole("ROLE_VIP");
+        user.setRole("VIP");
         userRepository.save(user);
     }
 

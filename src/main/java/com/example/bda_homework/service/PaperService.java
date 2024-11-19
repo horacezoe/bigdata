@@ -5,6 +5,8 @@ import com.example.bda_homework.repository.PaperRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class PaperService {
@@ -12,8 +14,12 @@ public class PaperService {
     @Autowired
     private PaperRepository paperRepository;
 
-    public static List<Paper> getReferencedPapers(Long paperId) {
-        return null;
+    public List<Paper> getReferencedPapers(Long paperId) {
+        String referencedPaperIds = paperRepository.findById(paperId).get().getPaperIdList();
+        List<Long> paperIds = Stream.of(referencedPaperIds.split(","))
+                .map(Long::parseLong)
+                .collect(Collectors.toList());
+        return paperRepository.findAllById(paperIds);
     }
 
     public List<Paper> searchPapersByKeyword(String keyword) {
