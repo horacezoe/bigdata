@@ -24,6 +24,9 @@ public class Paper {
     @Column(name = "year", nullable = false)
     private int year; // 发表年份
 
+    @Column(name = "paper_id_list", columnDefinition = "TEXT" , nullable = true)
+    public String paperIdList; // 引用的论文ID列表
+
     // Getters and Setters
 
     public Long getId() {

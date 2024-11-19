@@ -27,7 +27,12 @@ public class UserService {
     }
 
     public void registerUser(UserVO userVO) {
-
+        User user = new User();
+        user.setUsername(userVO.getUsername());
+        user.setEmail(passwordEncoder.encode(userVO.getEmail()));
+        user.setRole("ROLE_USER");
+        user.setPassword(passwordEncoder.encode(userVO.getPassword()));
+        userRepository.save(user);
     }
 
     public void upgradeToVip(String userName) {
