@@ -51,4 +51,26 @@ public class PaperServiceTest {
         assertEquals(2L, result.get(0).getId());
         assertEquals(3L, result.get(1).getId());
     }
+
+    @Test
+public void testGetPapersByCategory() {
+    String category = "Machine Learning";
+    Paper paper1 = new Paper();
+    paper1.setId(1L);
+    paper1.setCategory(category);
+    Paper paper2 = new Paper();
+    paper2.setId(2L);
+    paper2.setCategory(category);
+    Paper paper3 = new Paper();
+    paper3.setId(3L);
+    paper3.setCategory(category);
+
+    when(paperRepository.findByCategory(category)).thenReturn(Arrays.asList(paper1, paper2,paper3));
+
+    List<Paper> result = paperService.getPapersByCategory(category);
+
+    assertEquals(3, result.size());
+    assertEquals(1L, result.get(0).getId());
+    assertEquals(2L, result.get(1).getId());
+}
 }

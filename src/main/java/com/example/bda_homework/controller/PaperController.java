@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/papers")
@@ -32,10 +33,13 @@ public class PaperController {
     }
 
     @GetMapping("/category")
-    public ResponseEntity<List<Paper>> getPapersByCategory(@RequestParam String category) {
-        List<Paper> papers = paperService.getPapersByCategory(category);
-        return ResponseEntity.ok(papers);
-    }
+    public ResponseEntity<List<Paper>> getPapersByCategory(@RequestParam String category, @RequestParam Long excludePaperId) {
+    List<Paper> papers = paperService.getPapersByCategory(category);
+    List<Paper> filteredPapers = papers.stream()
+                                       .filter(paper -> !paper.getId().equals(excludePaperId))
+                                       .collect(Collectors.toList());
+    return ResponseEntity.ok(filteredPapers);
+}
 
     @GetMapping("/similar")
     public ResponseEntity<List<Paper>> getSimilarPapers(@RequestParam Long paperId) {
