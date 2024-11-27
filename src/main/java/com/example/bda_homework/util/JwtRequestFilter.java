@@ -44,7 +44,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         } else {
             //打印authorizationHeader
             System.out.println(authorizationHeader);
-            logger.warn("Authorization header is missing or does not start with Bearer");
+            logger.warn("Authorization header is missing");
         }
 
         // 验证并设置用户信息
